@@ -9,6 +9,7 @@ services:
     volumes:
         - "./.ignore/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
+    user: root
   pubnic-todo:
     build: .
     container_name: pubnic-todo
