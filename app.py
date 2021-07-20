@@ -3,6 +3,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from db.services import DBService
 from todos.views import todo_router
+from pynamodb.exceptions import TableError
+from time import sleep
 
 
 app = FastAPI(
@@ -24,7 +26,14 @@ app.include_router(
 
 @app.on_event("startup")
 async def startup_event():
-    DBService.create_tables()
+    while(True):
+        try:
+            DBService.create_tables()
+        except TableError:
+            print('DynamoDB não está disponível ainda - Espere...')
+            sleep(1)
+        else:
+            break
 
 
 @app.exception_handler(Exception)
