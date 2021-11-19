@@ -38,9 +38,7 @@ class DBService:
 
     @staticmethod
     def table_name(table_name: str):
-        return f'test_{table_name}' if (
-            ENVIRONMENT == EnvironmentSet.TEST
-        ) else table_name
+        return f'{ENVIRONMENT}_{table_name}'
 
     @staticmethod
     def host():
