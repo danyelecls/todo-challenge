@@ -33,6 +33,7 @@ class TestGetTodos:
             assert todo.get('title') in ['Todo1', 'Todo2']
             assert todo.get('description') in ['Descrição', 'Descrição2']
             assert todo.get('status') in ['DOING', 'DONE']
-            assert todo.get('due_date') in ['2021-07-15T00:00:00+00:00', '2022-07-15T00:00:00+00:00']
+            assert todo.get('due_date') in ['2021-07-15T00:00:00+00:00',
+                                            '2022-07-15T00:00:00+00:00']
             assert todo.get('responsible') in ['João', 'João2']
         assert response.status_code == 200
