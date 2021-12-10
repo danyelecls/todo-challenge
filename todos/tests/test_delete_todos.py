@@ -19,12 +19,14 @@ class TestDeleteTodos:
 
     def test_delete_todos(self, client: TestClient):
         assert len(self.db_service.get_todos()) == 1
-        response = client.delete(f'{self.url}/{self.todo.id}/', allow_redirects=True)
+        response = client.delete(f'{self.url}/{self.todo.id}/',
+                                 allow_redirects=True)
         assert len(self.db_service.get_todos()) == 0
         assert response.status_code == 204
 
     def test_delete_not_exist(self, client: TestClient):
-        response = client.delete(f'{self.url}/{self.todo.id}1/', allow_redirects=True)
+        response = client.delete(f'{self.url}/{self.todo.id}1/',
+                                 allow_redirects=True)
         response_json = response.json()
         print('response_json: ', response_json)
         assert response_json['error'] == 'Todo not found.'
@@ -32,4 +34,3 @@ class TestDeleteTodos:
 
         todos = self.db_service.get_todos()
         assert len(todos) == 1
-
