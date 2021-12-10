@@ -1,5 +1,5 @@
 from uuid import uuid4
-from pynamodb.exceptions import DoesNotExist
+# from pynamodb.exceptions import DoesNotExist
 from todos.serializers import TodoCreateSerializer, TodoUpdateSerializer
 from todos.db.models import TodoModel
 
