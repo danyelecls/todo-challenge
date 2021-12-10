@@ -25,7 +25,8 @@ class TestUpdateTodos:
             due_date='2022-07-15 00:00',
             responsible='João2'
         )
-        response = client.put(f'{self.url}/{self.todo.id}/', json=payload, allow_redirects=True)
+        response = client.put(f'{self.url}/{self.todo.id}/', json=payload,
+                              allow_redirects=True)
         print(response.__dict__)
         response_json = response.json()
         print('response_json: ', response_json)
@@ -56,11 +57,12 @@ class TestUpdateTodos:
             due_date='2022-07-15 00:00',
             responsible='João2'
         )
-        response = client.put(f'{self.url}/{self.todo.id}1/', json=payload, allow_redirects=True)
+        response = client.put(f'{self.url}/{self.todo.id}1/', json=payload,
+                              allow_redirects=True)
         print(response.__dict__)
         response_json = response.json()
         print('response_json: ', response_json)
-        assert response_json['detail'] == 'Todo not found.'
+        assert response_json['error'] == 'Todo not found.'
         assert response.status_code == 404
 
         todos = self.db_service.get_todos()
